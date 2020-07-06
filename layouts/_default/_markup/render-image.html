@@ -1,1 +1,51 @@
-<img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+<!-- layouts/partials/render-image.html -->
+{{ $src := ( .Destination | safeURL ) }}
+{{ $fragments := ( split $src "#" ) }}
+{{ $src = index ($fragments ) 0 }}
+{{ $src = path.Base $src }}
+{{ $resource := ($.Page.Resources.ByType "image").GetMatch ( printf "**%s" $src ) }}
+
+{{ with $resource }}
+{{ if (eq .MediaType.SubType "svg") }}
+  {{ warnf "%q" .Permalink }}
+{{ else }}
+  {{ .ResourceType }} || {{ .MediaType.SubType}} || {{.Width}}
+{{ end }}
+{{ end }}
+
+{{ with $resource  }}
+{{ warnf "%q %s" . .ResourceType }}
+    {{ if eq .ResourceType "image" }}
+        {{ $width := 0 }}
+        {{ $height := 0 }}
+        {{ if isset . "Width" }}
+            {{ $width = .Width }}
+            {{ $height = .Height }}
+        {{ end }}
+        <!-- resize if wider than 800px -->
+        {{ $resized := cond (lt .Width "800") . ( .Resize "800x" ) }}
+        <!-- generate a low resolution placeholder to use as background if a JPG -->
+        {{ $placeholder := "" }}
+        {{ if eq .MediaType.SubType "jpeg" }}
+            {{ $placeholder = .Resize "16x q20 jpg Gaussian" }}
+        {{ end }}
+        <img src="{{ $resized.RelPermalink }}"
+             
+        width="{{ $resized.Width }}"
+        height="{{ $resized.Height }}"
+        {{ with $placeholder }}style="
+            background-image: url('data:image/jpg;base64,{{ .Content | base64Encode }}');
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;"{{ end }}
+        alt="{{ $.Text }}" {{ with $.Title }} title="{{ . }}" {{ end }}
+        {{ with index ($fragments ) 1 }}class="{{ . }}"{{ end }}
+        loading="lazy"
+        >
+    {{ end }}
+{{ else }}
+    <img src="{{ .Destination | safeURL }}"
+    alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}
+    loading="lazy"
+    >
+{{ end }}
