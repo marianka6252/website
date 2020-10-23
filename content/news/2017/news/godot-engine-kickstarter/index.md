@@ -28,7 +28,7 @@ I didn't expect to go full time with GDQuest. Back then there was no website, a 
 It is certainly the most flexible, 100% Free and Open Source game engine out there. I mean, just look at [Godot's key features](//godotengine.org/features). And in the upcoming version 3, there's so much new stuff coming I'd need a separate article to just give you an overview of the changes. PBR workflow for 3d, light probes, audio mixer and audio effects, brand new asset management system, particles rebuilt from scratch...
 
 
-{{< figure src="/img/post/2017/news/godot-engine-kickstarter/godot-editor-design.jpg" alt="Screenshot of the Godot editor" >}}
+{{< figure src="godot-editor-design.jpg" alt="Screenshot of the Godot editor" >}}
 
 
 
@@ -45,7 +45,7 @@ I'm a professional designer. I've worked in games for a few years now, made hund
 
 A Kickstarter campaign will allow me to earn enough money to create high quality tutorials and to do a lot of communication around Godot, thus help new people learn about the engine. Tens of thousands have watched my Krita tutorials, and thousands stumble upon the videos every day. I'm working super hard now to wrap up freelance contracts, ongoing projects, and to live up to my words. I didn't forget the channel, and I didn't forget you guys.
 
-{{< figure src="/img/post/2017/news/godot-engine-kickstarter/krita-course-cel-shading.jpg" alt="3 stylized characters used to teach lighting fundamentals" caption="I'm wrapping up a Krita course, out on May 9, to then focus on Godot" >}}
+{{< figure src="krita-course-cel-shading.jpg" alt="3 stylized characters used to teach lighting fundamentals" caption="I'm wrapping up a Krita course, out on May 9, to then focus on Godot" >}}
 
 Actually, during the campaign, I want to do a **30 days, daily free tutorial challenge** about game design, programming with godot, and maybe a bit of game art.
 

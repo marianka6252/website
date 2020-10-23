@@ -21,7 +21,7 @@ It's been a year already. 12 months, 12 consecutive updates. This anniversary re
 The updated design reads a lot better when the thumbnails get small. If you work on a laptop, a tablet, or if you have a lot of presets in the docker, you can now spot the one you want faster.
 
 {{< figure
-    src="/img/post/2017/news/krita-brushes-anniversary-update/presets-docker-comparison.jpg"
+    src="presets-docker-comparison.jpg"
     caption="The old brushes and the new ones in the presets docker. That's quite a change, isn't it?"
     alt="Comparison of the old brush thumbnails and the new ones" >}}
 
@@ -34,7 +34,7 @@ There are up to 4 elements in each thumbnail:
 
 
 {{< figure
-    src="/img/post/2017/news/krita-brushes-anniversary-update/brush-thumbnail-components.jpg"
+    src="brush-thumbnail-components.jpg"
     caption="A handful of layers are all it takes to generate the complete thumbnail"
     alt="The 4 components of a brush thumbnail, and the assembled result" >}}
 

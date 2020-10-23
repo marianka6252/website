@@ -47,7 +47,7 @@ Each and every screenshot is its own little piece of art. If you follow artists 
 1. The screens should look appealing, and really they should tell a story.
 
 {{< figure
-    src="/img/post/2017/marketing-indie-games-with-0-budget/firewatch-sunrise.jpg"
+    src="firewatch-sunrise.jpg"
     alt="Beautiful sunrise scene in the game Firewatch" >}}
 
 
@@ -78,7 +78,7 @@ The landing page is a powerful marketing asset. It is a vitrine for your game, t
 1. Mention good reviews and testimonials from influent sources.
 1. At the bottom, leave links to your presskit and ways to contact you.
 
-{{< figure src="/img/post/2017/marketing-indie-games-with-0-budget/hollow-knight-teaser.jpg" caption="Hollow knight has a great landing page" alt="Hollow knight game screenshot" >}}
+{{< figure src="hollow-knight-teaser.jpg" caption="Hollow knight has a great landing page" alt="Hollow knight game screenshot" >}}
 
 ### 5- Devblog
 

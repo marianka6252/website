@@ -38,7 +38,7 @@ That said, let's look at the results!
 
 76% said they'll support the project on Kickstarter. The most common amounts people want to pledge are 10, 20, 40, 100 and 200 euros (_quartiles, median, 9th decile and 95 percentile values_). That's great news! The more funding, the longer the course will be.
 
-{{< figure src="/img/post/2017/news/godot-kickstarter-form-results/would-you-support.png" alt="The picture shows 445 persons said they'd support the kickstarter" caption="If that many people support the project, it'll be funded for sure" >}}
+{{< figure src="would-you-support.png" alt="The picture shows 445 persons said they'd support the kickstarter" caption="If that many people support the project, it'll be funded for sure" >}}
 
 I can help you become better at game creation, but making a great course costs a lot of time. And time is money. Working full-time with open source technologies taught me how essential the community is, in many regards. That's why such a project starts with **you**. 
 
@@ -48,7 +48,7 @@ I can help you become better at game creation, but making a great course costs a
 
 ## A top-down game?
 
-{{< figure src="/img/post/2017/news/godot-kickstarter-form-results/what-game-genre.png" alt="Form results, showing 53% of the respondents prefer the project to be a Zelda-like, followed by Platformer" caption="I listed game genres that work well with a character, so we can explore movement and collisions in the course" >}}
+{{< figure src="what-game-genre.png" alt="Form results, showing 53% of the respondents prefer the project to be a Zelda-like, followed by Platformer" caption="I listed game genres that work well with a character, so we can explore movement and collisions in the course" >}}
 
 The 3 most popular types of games are:
 
@@ -63,7 +63,7 @@ Anyway, the point of the course is not to teach you how to make a zelda-like, bu
 
 ## Learning style: 50/50
 
-{{< figure src="/img/post/2017/news/godot-kickstarter-form-results/what-course-style.png" alt="50% of the respondents want the course to be " caption="The answers in the 'other' category show how torn people can be on the subject" >}}
+{{< figure src="what-course-style.png" alt="50% of the respondents want the course to be " caption="The answers in the 'other' category show how torn people can be on the subject" >}}
 
 Everyone has a different opinion on how things should be taught, but that's the reflect of who we are: we all learn differently, and we're all at different stages on our journey. I'll do my best to make the course useful to every backer. There'll definitely be step-by-step tutorials and code commentaries, to help new Godot users get more comfortable with the engine. But I'll also cover more advanced topics for those who want to go a step further. I've already done that for the last project, and it worked well.
 

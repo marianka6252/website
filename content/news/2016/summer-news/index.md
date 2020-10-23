@@ -45,7 +45,7 @@ Coming back from Switzerland, there was the 36<sup>th</sup> edition of the Ludum
 
 It's a small isometric 2D game where a cat throws ridiculous spells at scarecrows and ghosts. Alright, I'll figure out a nicer introduction for the course release! At that occasion, I learned how to work with Godot 2.1, which deeply impressed me. It came a long way since version 1.0. It feels a lot more polished, and it's well documented. Within 3 days, I managed to get a small working prototype. There's work left to polish it a bit, but it'll give us a nice base project for the game art workshops, where I'll show you how to replace my sprites and put your own art into the game!
 
-![Carrot's Magic: my Ludum Dare 36 prototype](/img/post/2016/09/ludum-dare-36-godot-prototype.jpg)
+![Carrot's Magic: my Ludum Dare 36 prototype](ludum-dare-36-godot-prototype.jpg)
 
 ## Krita tutorials: where are we at?
 

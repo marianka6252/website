@@ -23,11 +23,12 @@ May has been a busy month. I did my best to keep up with everyone on social netw
 Actually, I'm still catching up with work, since I got that shoulder injury. Thankfully, I got faster in some areas, especially answering people online, thus I'm making good progress. On to the news!
 
 {{< card-box
-  img="/img/post/2016/05/krita-logo.png"
+  img="krita-logo.png"
   title="Krita 3 launch Youtube livestream"
   url="//www.youtube.com/watch?v=hlcHDRc-gN8"
   urlText="Youtube Livestream"
   >}}
+
 "Krita 3 is out tomorrow! I will be live on YouTube to answer all of your questions about the program, GDQuest, and game art in general. I will also create 2D game assets to fill in the blanks. To join the event, click on the link below and show up tomorrow, at 6 PM <abbr title=\"Central Europe Standard Time (UTC/GMT +2)\>CEST</abbr>
 {{< /card-box >}}
 
@@ -35,7 +36,7 @@ Actually, I'm still catching up with work, since I got that shoulder injury. Tha
 
 [Omitted long matching line]
 
-![Picture: The brushes on the pop-up palette](/img/post/2016/05/krita-brushes-update-may-2016.jpg)
+![Picture: The brushes on the pop-up palette](krita-brushes-update-may-2016.jpg)
 
 You will now find 2 tutorials along with the brushes. The first one is dedicated to the mix brushes, and it will show you how to play with the opacity setting to get the most out of them. The 2nd one explains how to use the smear brushes in practice. They may seem strange at first, but trust me, they are actually quite useful! On top of that, I updated the existing brushes to make them less resource intensive. The Paint_Painterly preset comes with a new custom brush tip, and it should be at least 3 or 4 times faster now.
 
