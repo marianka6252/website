@@ -1,10 +1,10 @@
 +++
 title = "Anchor the camera from the player to fixed points"
-description = "Learn how to anchor the camera from the player to specific points of the screen with different zoom levels."
+description = "Learn to anchor the camera from the player to specific points of the screen with potentially  different zoom levels and in a smooth movement."
 author = "raformatico"
 coAuthors = ["nathan"]
 
-date = 2020-10-06
+date = 2020-10-25
 weight = 5
 
 difficulty = "beginner"
@@ -116,3 +116,157 @@ func _unhandled_input(event):
 		_set_zoom_level(_zoom_level + zoom_factor)
 ```
 
+* Using two areas2D to indicate to the camera if the player is inside one of them or not.
+* Using a method to get near a point and reaching a radius slow down the approximation speed. It's not fundamental to the tut but I think it's a good extra.
+
+# Anchor the camera from the player to fixed points
+
+Example of a gameplay that justifies this. When a player enters in an area with a boss fight the camera goes from centered in the player to the center of the screen.
+
+VIDEO: animated example
+
+You can find the full project [here](https://github.com/GDQuest/godot-mini-tuts-demos/tree/master/2d/anchor-camera).
+
+You will learn to:
+
+* Change the anchor and the zoom of the camera when the player enters in a specific part of the map.
+* Interpolate the camera position from between different anchor points.
+
+## Main components
+
+*I don't know if it is better to use the name of the nodes here or a more common name (I'll use the same as title in its corresponding section)*
+**Anchor2D.** Area2D instantiated in the game scene. If the player enters in this area the camera should change its anchor point to the center of the _Anchor2D_ area. This node also has a property which indicates the _zoom_level_ of the camera.
+**AnchorDetector2D.** The player has this _Area2D_ node as a child. It is intended to detect when the player enters of goes out in an _Anchor2D_. It should notify through signals these events to the _AnchorCamera2D_.
+**AnchorCamera2D.** Camara2D node which is a child of the player. This node is in charge of changing the camera anchor and zoom level in function of the received signals from the player. It presents methods to do so in a smooth way.
+**Player.** _KinematicBody2D_ node to which represents the player of the demo. It has _AnchorDetector2D_ and _AnchorCamera2D_ as children.
+
+### Collision layers
+
+Presents the collision layers used with an image.
+
+## Anchor2D
+
+Scene description (it includes an optional sprite to show the limits of the anchor area).
+
+Briefly explain monitoring and monitorable and show with an image the selected collision layer.
+
+Code with a minor comment in the zoom line
+
+```gdscript
+class_name Anchor2D
+extends Area2D
+
+export var zoom_level := 1.0
+```
+
+## AnchorDetector2D
+
+General scene description and an image of the selected collision mask and monitoring enabled.
+
+It will detect when it enters or goes out of an area in the third layer, i.e. the layer associated with anchors. Show with an image the connection of these signals.
+
+When it does so it will emit the signal _anchor_detected_ or _anchor_detached_ that will be received by the _AnchorCamera2D_. Show with an image the connection of these signals from the scene of the player (in order to connect them with the cammera).
+
+Code with comments
+
+```gdscript
+extends Area2D
+
+signal anchor_detected(anchor)
+signal anchor_detached
+
+
+func _on_area_entered(area: Anchor2D) -> void:
+	emit_signal("anchor_detected", area)
+
+
+func _on_area_exited(area: Anchor2D) -> void:
+	var areas: Array = get_overlapping_areas()
+	if get_overlapping_areas().size() == 1 and area == areas[0]:
+		emit_signal("anchor_detached")
+```
+
+## AnchorCamera2D
+
+General scene description and an image of the current enabled. **size of the anchor to fit the player**
+
+General behavior of the camera (brief explanation as the reader can read the comments in the code):
+
+* It should move independently from his parent
+* Approach the new anchor with a maximum speed and reducing this one when it gets closer to a certain radius to this target point.
+* The position of the new anchor is received with the _anchor_detected_ signal.
+* The anchor will return to the player when the _AnchorCamera2D_ receives the _anchor_detached_ signal
+* The change in zoom and anchor point is smoothen using _update_zoom_ and _arrive_to_ methods
+
+Code with comments
+
+```gdscript
+class_name AnchorCamera2D
+extends Camera2D
+
+const SLOW_RADIUS := 300.0
+
+export var tween_duration := 0.5
+export var max_speed := 2000.0
+
+var _velocity = Vector2.ZERO
+var _anchor_position := Vector2.ZERO
+var _target_zoom := 1.0
+
+
+func _ready() -> void:
+	set_as_toplevel(true)
+
+
+func _physics_process(delta: float) -> void:
+	update_zoom()
+
+	# Arrive steering behavior
+	var target_position: Vector2 = (
+		owner.global_position
+		if _anchor_position.is_equal_approx(Vector2.ZERO)
+		else _anchor_position
+	)
+	arrive_to(target_position)
+
+
+func _on_AnchorDetector2D_anchor_detected(anchor: Anchor2D) -> void:
+	_anchor_position = anchor.global_position
+	_target_zoom = anchor.zoom_level
+
+
+func _on_AnchorDetector2D_anchor_detached() -> void:
+	_anchor_position = Vector2.ZERO
+	_target_zoom = 1.0
+```
+
+### Coding the zoom and anchor point change smoothly
+
+Brief introduction to this code with comments
+
+```gdscript
+func update_zoom() -> void:
+	if not is_equal_approx(zoom.x, _target_zoom):
+		var new_zoom_level: float = lerp(
+			zoom.x, _target_zoom, 1.0 - pow(0.008, get_physics_process_delta_time())
+		)
+		zoom = Vector2(new_zoom_level, new_zoom_level)
+```
+
+Faster when it's further away from the target point and much slower when it's in the _SLOW_RADIUS_ distance.
+Code with comments
+
+```gdscript
+func arrive_to(target_position: Vector2) -> void:
+	var distance_to_target := position.distance_to(target_position)
+	var desired_velocity := (target_position - position).normalized() * max_speed * zoom.x
+	if distance_to_target < SLOW_RADIUS * zoom.x:
+		desired_velocity *= (distance_to_target / (SLOW_RADIUS * zoom.x))
+
+	_velocity += desired_velocity - _velocity
+	position += _velocity * get_physics_process_delta_time()
+```
+
+## Player
+
+Repeat the same as in the zoom demo but instanciating AchorCamera and AnchorDetector.
